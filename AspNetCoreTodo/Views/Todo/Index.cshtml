@@ -1,5 +1,5 @@
 @model TodoViewModel
-
+@using Humanizer
 @{
     ViewData["Title"] = "Manage your todo list";
 }
@@ -20,10 +20,13 @@
       {
           <tr>
               <td>
+                <form asp-action="MarkDone" method="POST">
                 <input type="checkbox" class="done-checkbox">
+                <input type="hidden" name="id" value="@item.Id">
+                </form>
               </td>
               <td>@item.Title</td>
-              <td>@item.DueAt</td>
+              <td>@item.DueAt.Humanize()</td>
           </tr>
       }
   </table>
@@ -32,4 +35,38 @@
     <!-- TODO: Add item form -->
      @await Html.PartialAsync("AddItemPartial", new TodoItem())
   </div>
+
+  <div class="laydate-box">
+			<input type="text" id="laydateInput" placeholder="xxxx年xx月xx日" />
+			<img src="images/calendar.png" alt="" class="icon data-icon"/>
+			<div class="select-date">
+				<div class="select-date-header">
+					<ul class="heade-ul">
+						<li class="header-item header-item-one">
+							<select name="" id="yearList"></select>
+						</li>
+						<li class="header-item header-item-two" onselectstart="return false">
+							<select name="" id="monthList"></select>
+						</li>
+						<li class="header-item header-item-three" onselectstart="return false" >
+							<span class="reback">回到今天</span>
+						</li>
+					</ul>
+				</div>
+				<div class="select-date-body">
+					<ul class="week-list">
+						<li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>
+					</ul>
+					<ul class="day-tabel"></ul>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			function getSelectDate(result){
+				//这里获取选择的日期
+                console.log(result);
+                $("#DueAt").val(result);
+			}
+		</script>
 </div>

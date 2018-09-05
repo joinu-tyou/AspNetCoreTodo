@@ -3,5 +3,9 @@
 <form asp-action="AddItem" method="POST">
     <label asp-for="Title">Add a new item:</label>
     <input asp-for="Title">
+    <input id="DueAt" value="" name="DueAt" type="hidden"/>
+    <br/>
+    <b>Please Choose Date:</b>
+    <br/>
     <button type="submit">Add</button>
 </form>
