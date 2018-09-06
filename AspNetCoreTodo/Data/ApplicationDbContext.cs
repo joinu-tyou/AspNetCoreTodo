@@ -13,10 +13,5 @@ namespace AspNetCoreTodo.Data
             : base(options) { }
         public DbSet<TodoItem> Items { get; set; }
         public DbSet<ApplicationUser> AspNetUsers{get;set;}
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            // ...
-        }
     }
 }
